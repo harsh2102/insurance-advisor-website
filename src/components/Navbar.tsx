@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { useLang } from "@/utils/LanguageContext";
 import { useState } from "react";
 
@@ -12,8 +13,17 @@ export default function Navbar() {
     <header className="fixed top-0 w-full z-50 bg-white border-b border-gray-200">
       <nav className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
-        <div className="font-semibold text-lg text-gray-900">
-          <Link href="/#home">Insurance Advisor</Link>
+        <div className="flex items-center">
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/logo.png"
+              alt="Sushil Mishra Insurance Advisor"
+              width={140}
+              height={40}
+              priority
+              className="object-contain"
+            />
+          </Link>
         </div>
 
         {/* Desktop Menu */}
