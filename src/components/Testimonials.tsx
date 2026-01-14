@@ -3,8 +3,8 @@ import { useLang } from "@/utils/LanguageContext";
 
 const testimonials = [
   { key: "test_1", name: "Nitish Vishnoi", role: "Business Owner" },
-  { key: "test_2", name: "Ranu Tripathi", role: "Homemaker" },
-  { key: "test_3", name: "Bhoori Mishra", role: "Teacher" },
+  { key: "test_2", name: "Ranu Tripathi", role: "Business Owner" },
+  { key: "test_3", name: "Ajit", role: "Teacher" },
 ];
 
 export default function Testimonials() {

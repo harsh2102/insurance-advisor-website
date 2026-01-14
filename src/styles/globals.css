@@ -99,6 +99,44 @@ html {
   border-radius: 4px;
 }
 
+/* Remove focus outline from gallery images */
+.gallery-image:focus-visible,
+.gallery-image *:focus-visible {
+  outline: none !important;
+}
+
+/* Ensure gallery images stay within containers */
+.gallery-image {
+  overflow: hidden !important;
+  position: relative !important;
+}
+
+.gallery-image > div {
+  overflow: hidden !important;
+  position: relative !important;
+}
+
+.gallery-image > div > div {
+  overflow: hidden !important;
+  position: relative !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.gallery-image img,
+.gallery-image picture,
+.gallery-image picture img {
+  max-width: 100% !important;
+  max-height: 100% !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  display: block !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+}
+
 /* Mobile optimizations */
 @media (max-width: 640px) {
   /* Prevent text size adjustment on iOS */
