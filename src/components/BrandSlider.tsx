@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useLang } from "@/utils/LanguageContext";
 
 const logos = [
   { src: "/logos/lic.png", alt: "LIC" },
@@ -9,12 +10,14 @@ const logos = [
 ];
 
 export default function BrandSlider() {
+  const { t } = useLang();
+
   return (
     <section className="py-16 px-6 bg-white border-t border-gray-200">
       <div className="max-w-6xl mx-auto">
         {/* Title */}
         <h2 className="text-center text-sm font-medium text-gray-600 mb-10">
-          Companies I Work With
+          {t.brands_title}
         </h2>
 
         {/* Slider Wrapper */}

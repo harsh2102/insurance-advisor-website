@@ -35,9 +35,10 @@ export default function VideoTestimonial() {
                 loading="lazy"
                 className="w-full h-full"
                 src={`https://www.youtube.com/embed/${id}`}
-                title="Client Testimonial"
+                title={`${t.video_testimonial} ${i + 1}`}
                 allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
+                aria-label={`${t.video_testimonial} ${i + 1}`}
               />
             </motion.div>
           ))}
