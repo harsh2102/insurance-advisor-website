@@ -14,6 +14,15 @@ export default function Document() {
         <link rel="dns-prefetch" href="https://www.youtube.com" />
         <link rel="dns-prefetch" href="https://wa.me" />
 
+        {/* Resource hints for better performance */}
+        <link
+          rel="preload"
+          href="/videos/hero.mp4"
+          as="video"
+          type="video/mp4"
+        />
+        <link rel="preload" href="/logo.png" as="image" />
+
         {/* Theme color for mobile browsers */}
         <meta name="theme-color" content="#ffffff" />
 

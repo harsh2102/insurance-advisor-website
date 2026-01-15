@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useState } from "react";
 
 const images = [
@@ -16,36 +16,41 @@ const images = [
 
 export default function PhotoCarousel() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const shouldReduceMotion = useReducedMotion();
 
   return (
     <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 bg-gradient-to-b from-black via-gray-900 to-black border-t border-gray-800 overflow-hidden relative">
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          className="absolute top-1/4 left-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"
-          animate={{
-            x: [0, 100, 0],
-            y: [0, 50, 0],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-        <motion.div
-          className="absolute bottom-1/4 right-0 w-96 h-96 bg-green-500/5 rounded-full blur-3xl"
-          animate={{
-            x: [0, -100, 0],
-            y: [0, -50, 0],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-      </div>
+      {/* Animated Background Elements - Reduced on mobile and for accessibility */}
+      {!shouldReduceMotion && (
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <motion.div
+            className="absolute top-1/4 left-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl gpu-accelerated"
+            animate={{
+              x: [0, 100, 0],
+              y: [0, 50, 0],
+            }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            style={{ willChange: "transform" }}
+          />
+          <motion.div
+            className="absolute bottom-1/4 right-0 w-96 h-96 bg-green-500/5 rounded-full blur-3xl gpu-accelerated"
+            animate={{
+              x: [0, -100, 0],
+              y: [0, -50, 0],
+            }}
+            transition={{
+              duration: 25,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            style={{ willChange: "transform" }}
+          />
+        </div>
+      )}
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Title with enhanced animation */}
@@ -95,21 +100,26 @@ export default function PhotoCarousel() {
                     duration: 0.6,
                     ease: "easeOut",
                   }}
-                  whileHover={{
-                    y: -12,
-                    scale: 1.05,
-                    rotateY: 5,
-                    rotateX: 5,
-                  }}
+                  whileHover={
+                    shouldReduceMotion
+                      ? {}
+                      : {
+                          y: -12,
+                          scale: 1.05,
+                          rotateY: 5,
+                          rotateX: 5,
+                        }
+                  }
                   onHoverStart={() => setHoveredIndex(i)}
                   onHoverEnd={() => setHoveredIndex(null)}
                   className="group flex-shrink-0 w-[220px] sm:w-[260px] md:w-[300px] h-[160px] sm:h-[180px] md:h-[220px]
                              bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl sm:rounded-2xl overflow-hidden
                              shadow-xl hover:shadow-2xl transition-all duration-500 cursor-pointer
-                             border-2 border-gray-800 hover:border-blue-500/50 relative"
+                             border-2 border-gray-800 hover:border-blue-500/50 relative gpu-accelerated"
                   style={{
                     transformStyle: "preserve-3d",
                     perspective: "1000px",
+                    willChange: hoveredIndex === i ? "transform" : "auto",
                   }}
                 >
                   {/* Glow effect on hover */}
@@ -123,16 +133,19 @@ export default function PhotoCarousel() {
                   {/* Image container with padding */}
                   <div className="relative w-full h-full p-3 sm:p-4">
                     <motion.div
-                      className="relative w-full h-full"
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ duration: 0.4 }}
+                      className="relative w-full h-full gpu-accelerated"
+                      whileHover={shouldReduceMotion ? {} : { scale: 1.1 }}
+                      transition={{ duration: 0.4, ease: "easeOut" }}
+                      style={{ willChange: isHovered ? "transform" : "auto" }}
                     >
                       <Image
                         src={src}
                         alt={`Gallery image ${imageIndex + 1}`}
                         fill
-                        className="object-contain transition-all duration-500"
+                        className="object-contain transition-transform duration-300"
                         sizes="(max-width: 640px) 220px, (max-width: 768px) 260px, 300px"
+                        loading={i < 6 ? "eager" : "lazy"}
+                        quality={85}
                       />
                     </motion.div>
                   </div>

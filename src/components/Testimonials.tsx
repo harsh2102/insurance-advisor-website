@@ -54,7 +54,8 @@ export default function Testimonials() {
                   className="min-w-[280px] sm:min-w-[320px] md:min-w-[360px] max-w-[280px] sm:max-w-[320px] md:max-w-[360px]
                            bg-white rounded-xl sm:rounded-2xl border-2 border-gray-200
                            p-6 sm:p-8 shadow-lg hover:shadow-2xl hover:border-blue-300 active:shadow-lg
-                           transition-all duration-300 relative overflow-hidden group touch-manipulation"
+                           transition-all duration-300 relative overflow-hidden group touch-manipulation gpu-accelerated"
+                  style={{ willChange: "transform" }}
                 >
                   {/* Quote Icon */}
                   <div className="absolute top-3 right-3 sm:top-4 sm:right-4 text-blue-200 text-4xl sm:text-6xl font-serif leading-none opacity-20 group-hover:opacity-30 transition-opacity">

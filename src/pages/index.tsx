@@ -1,17 +1,35 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
+import dynamic from "next/dynamic";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Achievements from "@/components/Achievements";
 import BrandSlider from "@/components/BrandSlider";
 import InsuranceCards from "@/components/InsuranceCards";
 import Testimonials from "@/components/Testimonials";
-import VideoTestimonial from "@/components/VideoTestimonial";
-import WhyChooseMe from "@/components/WhyChooseMe";
-import Footer from "@/components/Footer";
 import About from "@/components/About";
-import PhotoCarousel from "@/components/PhotoCarousel";
+import Footer from "@/components/Footer";
+import WhatsAppButton from "@/components/WhatsAppButton";
 import { useLang } from "@/utils/LanguageContext";
+
+// Lazy load heavy components below the fold
+const PhotoCarousel = dynamic(() => import("@/components/PhotoCarousel"), {
+  loading: () => <div className="h-64 bg-black" />,
+  ssr: true,
+});
+
+const VideoTestimonial = dynamic(
+  () => import("@/components/VideoTestimonial"),
+  {
+    loading: () => <div className="h-64 bg-black" />,
+    ssr: true,
+  }
+);
+
+const WhyChooseMe = dynamic(() => import("@/components/WhyChooseMe"), {
+  loading: () => <div className="h-64 bg-gray-50" />,
+  ssr: true,
+});
 
 export default function Home() {
   const router = useRouter();
@@ -149,6 +167,7 @@ export default function Home() {
       <VideoTestimonial />
       <WhyChooseMe />
       <Footer />
+      <WhatsAppButton />
     </>
   );
 }

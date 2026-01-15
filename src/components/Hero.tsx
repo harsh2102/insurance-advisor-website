@@ -7,14 +7,16 @@ export default function Hero() {
 
   return (
     <section id="home" className="relative h-screen w-full overflow-hidden">
-      {/* Background Video */}
+      {/* Background Video - Optimized */}
       <video
         autoPlay
         loop
         muted
         playsInline
-        className="absolute inset-0 w-full h-full object-cover scale-105"
+        preload="metadata"
+        className="absolute inset-0 w-full h-full object-cover scale-105 gpu-accelerated"
         aria-label="Background video showcasing insurance services"
+        style={{ willChange: "auto" }}
       >
         <source src="/videos/hero.mp4" type="video/mp4" />
         Your browser does not support the video tag.
