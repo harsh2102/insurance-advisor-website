@@ -51,6 +51,15 @@ body {
   animation-play-state: paused;
 }
 
+/* Pause marquee animation when hovering over container or items */
+.marquee-container:hover {
+  animation-play-state: paused;
+}
+
+.marquee-container:hover .animate-marquee {
+  animation-play-state: paused;
+}
+
 @keyframes marquee-slow {
   0% {
     transform: translateX(0);

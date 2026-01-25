@@ -39,7 +39,7 @@ export default function BrandSlider() {
         {/* Slider Wrapper */}
         <div className="relative overflow-hidden py-8">
           {/* Marquee Track */}
-          <div className="flex w-max flex-nowrap animate-marquee gap-8 sm:gap-12 md:gap-16">
+          <div className="flex w-max flex-nowrap animate-marquee gap-8 sm:gap-12 md:gap-16 marquee-container">
             {[...logos, ...logos].map((logo, i) => (
               <motion.div
                 key={`${logo.alt}-${i}`}
@@ -47,15 +47,22 @@ export default function BrandSlider() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: (i % logos.length) * 0.1 }}
-                whileHover={{ y: -8, scale: 1.05 }}
-                className="group flex items-center justify-center min-w-[160px] sm:min-w-[180px] md:min-w-[200px]"
+                className="group flex items-center justify-center min-w-[160px] sm:min-w-[180px] md:min-w-[200px] cursor-pointer"
               >
-                <div className="relative bg-white rounded-2xl p-6 sm:p-8 border-2 border-gray-200 shadow-md hover:shadow-2xl hover:border-blue-300 transition-all duration-300 w-full h-32 sm:h-36 md:h-40 flex items-center justify-center">
+                <motion.div
+                  whileHover={{ y: -8, scale: 1.05 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="relative bg-white rounded-2xl p-6 sm:p-8 border-2 border-gray-200 shadow-md 
+                             hover:shadow-2xl hover:border-blue-300 transition-all duration-300 
+                             w-full h-32 sm:h-36 md:h-40 flex items-center justify-center
+                             gpu-accelerated"
+                  style={{ willChange: "transform" }}
+                >
                   {/* Gradient Background on Hover */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-green-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-green-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl pointer-events-none" />
 
                   {/* Logo */}
-                  <div className="relative z-10 w-full h-full flex items-center justify-center">
+                  <div className="relative z-10 w-full h-full flex items-center justify-center pointer-events-none">
                     <Image
                       src={logo.src}
                       alt={logo.alt}
@@ -66,15 +73,15 @@ export default function BrandSlider() {
                   </div>
 
                   {/* Company Name Tooltip */}
-                  <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <span className="text-xs font-semibold text-gray-700 bg-white px-2 py-1 rounded-md shadow-sm">
+                  <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-20">
+                    <span className="text-xs font-semibold text-gray-700 bg-white px-2 py-1 rounded-md shadow-sm whitespace-nowrap">
                       {logo.name}
                     </span>
                   </div>
 
                   {/* Shine Effect */}
-                  <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent rounded-2xl" />
-                </div>
+                  <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent rounded-2xl pointer-events-none" />
+                </motion.div>
               </motion.div>
             ))}
           </div>
