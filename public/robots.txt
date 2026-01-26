@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://your-domain.com/sitemap.xml
+Sitemap: https://www.mishrainsurance.in/sitemap.xml
 
 # Disallow build and admin directories
 Disallow: /_next/

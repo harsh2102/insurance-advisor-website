@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { useLang } from "@/utils/LanguageContext";
 
@@ -15,36 +16,42 @@ export default function InsuranceCards() {
       desc: t.ins_1_desc,
       for: t.ins_1_for,
       delay: 0.1,
+      href: "/health-insurance",
     },
     {
       title: t.ins_2_title,
       desc: t.ins_2_desc,
       for: t.ins_2_for,
       delay: 0.2,
+      href: "/term-life-insurance",
     },
     {
       title: t.ins_3_title,
       desc: t.ins_3_desc,
       for: t.ins_3_for,
       delay: 0.3,
+      href: "/insurance-for-parents",
     },
     {
       title: t.ins_4_title,
       desc: t.ins_4_desc,
       for: t.ins_4_for,
       delay: 0.4,
+      href: "/family-floater-plans",
     },
     {
       title: t.ins_5_title,
       desc: t.ins_5_desc,
       for: t.ins_5_for,
       delay: 0.5,
+      href: "/child-future-plans",
     },
     {
       title: t.ins_6_title,
       desc: t.ins_6_desc,
       for: t.ins_6_for,
       delay: 0.6,
+      href: "/senior-citizen-health-insurance",
     },
   ];
 
@@ -92,63 +99,66 @@ export default function InsuranceCards() {
         {/* Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
           {cards.map((card, i) => (
-            <motion.div
-              key={i}
-              variants={cardVariant}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              transition={{ delay: card.delay }}
-              whileHover={{ y: -8, scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="group relative bg-white border-2 border-gray-200 rounded-xl sm:rounded-2xl p-6 sm:p-8
-                         hover:border-blue-300 hover:shadow-2xl active:shadow-lg transition-all duration-300
-                         overflow-hidden touch-manipulation"
-            >
-              {/* Gradient Background on Hover */}
-              <div
-                className={`absolute inset-0 bg-gradient-to-br ${iconGradients[i]} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}
-              />
-
-              {/* Icon */}
+            <Link key={i} href={card.href}>
               <motion.div
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
+                variants={cardVariant}
+                initial="hidden"
+                whileInView="visible"
                 viewport={{ once: true }}
-                transition={{ delay: card.delay + 0.2, type: "spring" }}
-                className={`w-14 h-14 rounded-xl bg-gradient-to-br ${iconGradients[i]} flex items-center justify-center mb-6 shadow-lg`}
+                transition={{ delay: card.delay }}
+                whileHover={{ y: -8, scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="group relative bg-white border-2 border-gray-200 rounded-xl sm:rounded-2xl p-6 sm:p-8
+                           hover:border-blue-300 hover:shadow-2xl active:shadow-lg transition-all duration-300
+                           overflow-hidden touch-manipulation cursor-pointer h-full flex flex-col"
               >
-                <svg
-                  className="w-7 h-7 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+                {/* Gradient Background on Hover */}
+                <div
+                  className={`absolute inset-0 bg-gradient-to-br ${iconGradients[i]} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}
+                />
+
+                {/* Icon */}
+                <motion.div
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: card.delay + 0.2, type: "spring" }}
+                  className={`w-14 h-14 rounded-xl bg-gradient-to-br ${iconGradients[i]} flex items-center justify-center mb-6 shadow-lg`}
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-                  />
-                </svg>
-              </motion.div>
+                  <svg
+                    className="w-7 h-7 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                    />
+                  </svg>
+                </motion.div>
 
-              <h3 className="text-xl font-bold mb-4 text-gray-900 group-hover:text-blue-600 transition-colors">
-                {card.title}
-              </h3>
+                <h3 className="text-xl font-bold mb-4 text-gray-900 group-hover:text-blue-600 transition-colors">
+                  {card.title}
+                </h3>
 
-              <p className="text-gray-600 mb-6 leading-relaxed">{card.desc}</p>
-
-              <div className="pt-4 border-t border-gray-100">
-                <p className="text-sm font-semibold text-gray-700 mb-1">
-                  Perfect for:
+                <p className="text-gray-600 mb-6 leading-relaxed">
+                  {card.desc}
                 </p>
-                <p className="text-sm text-gray-600">{card.for}</p>
-              </div>
 
-              {/* Shine Effect */}
-              <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-            </motion.div>
+                <div className="pt-4 border-t border-gray-100">
+                  <p className="text-sm font-semibold text-gray-700 mb-1">
+                    Perfect for:
+                  </p>
+                  <p className="text-sm text-gray-600">{card.for}</p>
+                </div>
+
+                {/* Shine Effect */}
+                <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+              </motion.div>
+            </Link>
           ))}
         </div>
       </div>

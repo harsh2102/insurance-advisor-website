@@ -23,7 +23,7 @@ const VideoTestimonial = dynamic(
   {
     loading: () => <div className="h-64 bg-black" />,
     ssr: true,
-  }
+  },
 );
 
 const WhyChooseMe = dynamic(() => import("@/components/WhyChooseMe"), {
@@ -34,7 +34,7 @@ const WhyChooseMe = dynamic(() => import("@/components/WhyChooseMe"), {
 export default function Home() {
   const router = useRouter();
   const { lang, t } = useLang();
-  const baseUrl = "https://your-domain.com"; // Update with your actual domain
+  const baseUrl = "https://www.mishrainsurance.in"; // Update with your actual domain
   const currentUrl = `${baseUrl}${router.asPath}`;
   const siteName = "Sushil Mishra - Insurance Advisor";
   const title = `${t.hero_name} | ${t.hero_role} | ${t.hero_title}`;
