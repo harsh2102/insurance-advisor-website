@@ -113,6 +113,14 @@ export default function Home() {
         <meta name="revisit-after" content="7 days" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+        {/* Event snippet for Contact conversion page */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "gtag('event', 'conversion', {'send_to': 'AW-17813996303/M0AgCOzSvuwbEI-GsK5C'});",
+          }}
+        />
+
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content={currentUrl} />

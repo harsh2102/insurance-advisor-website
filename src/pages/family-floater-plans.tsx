@@ -76,6 +76,14 @@ export default function FamilyFloaterPlans() {
         <meta name="robots" content="index, follow" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+        {/* Event snippet for Contact conversion page */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "gtag('event', 'conversion', {'send_to': 'AW-17813996303/M0AgCOzSvuwbEI-GsK5C'});",
+          }}
+        />
+
         {/* Open Graph */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content={currentUrl} />

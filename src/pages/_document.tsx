@@ -26,6 +26,21 @@ export default function Document() {
         {/* Theme color for mobile browsers */}
         <meta name="theme-color" content="#ffffff" />
 
+        {/* Google tag (gtag.js) */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=AW-17813996303"
+        ></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'AW-17813996303');`,
+          }}
+        />
+
         {/* Additional SEO meta tags */}
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="format-detection" content="telephone=yes" />
